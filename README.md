@@ -9,8 +9,6 @@ https://www.kaggle.com/datasets/berkerisen/wind-turbine-scada-dataset
 - Generar una aplicación que lea el dataset y lo inserte en la base de datos (**actualizando las marcas de tiempo**).
 
 - Calcula diferentes tipos de agregaciones como demostración.
----
-
 ## Explicación de los pasos seguidos
 
 1. Explorar el dataset para elegir el modelo de datos idóneo.

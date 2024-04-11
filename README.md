@@ -11,8 +11,11 @@ https://www.kaggle.com/datasets/berkerisen/wind-turbine-scada-dataset
 - Calcula diferentes tipos de agregaciones como demostración.
 
 Extra: 
+- Demostrar mediante una visualización la inserción de datos correcta
 
-- Argumentar 
+- Argumentar la BBDD 
+
+- Introducir seguridad
 ## Explicación de los pasos seguidos
 
 ### 1. Explorar el dataset para elegir el modelo de datos idóneo.

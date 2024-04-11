@@ -6,9 +6,9 @@
 
 - **File Storage**: Organización y almacenamiento de datos en un **disco duro** o **dispositivo conectado a la red NAS**, usando una estructura jerárquica de archivos y carpetas.
 
-- **Block Storage**: Almacenamiento de datos en bloques dentro de **SANs** o en la nube, usado para transporte de datos rápido y fiable.
+- **Block Storage**: Almacenamiento de datos en bloques dentro de **SANs** o en la nube, usado para transporte de datos rápido y fiable. **Disco duro**
 
-- **Object Storage**: Almacenamiento basado en objetos para manejar grandes cantidades de **datos no estructurados**, como multimedia y datos de internet.
+- **Object Storage**: Almacenamiento basado en objetos para manejar grandes cantidades de **datos no estructurados**, como multimedia y datos IoT.
 
 ![](./img_apuntes/File_Block_Object.png)
 

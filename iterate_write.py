@@ -4,12 +4,15 @@ from influxdb_client_3 import InfluxDBClient3, Point
 from datetime import datetime
 import pandas as pd
 
-data = pd.read_csv('T1_actualizado.csv')
+import os
+
+data = pd.read_csv('./dataset/T1_actualizado.csv')
 
 
 # Parámetros para la solicitud
 host_ = "https://eu-central-1-1.aws.cloud2.influxdata.com"
-token_ = "2xxsXIxgVCwPznjv3VRMTqdm2o5Nm31NK5dLBdcf189KH3RHHmEjNuHH5_6AnBvF44jA8t_59XN966iBbXK6MQ=="  # Tu token de acceso
+token_ = os.getenv("INFLUX_TOKEN")
+
 org_ = "f1237642dc0cea57"  # Tu organización
 bucket_ = "viento"  # Tu bucket
 
@@ -27,6 +30,8 @@ for index, row in data.iterrows():
         .field("Wind_Speed_ms",Wind_Speed_m_s ) \
         .field("Theoretical_Power_Curve_KWh", Theoretical_Power_Curv) \
         .field("Wind_Direction_degrees", Wind_Direction) \
-        .time(datetime.utcnow())
+        .time(Date_Time)
     
     client.write(point)
+
+

@@ -16,16 +16,16 @@ Extra:
 - Demostrar mediante una visualización la inserción de datos correcta
 
 - Argumentar la BBDD 
-No
+
 - Introducir seguridad
 
 # Explicación de los pasos seguidos
 
 ## 1. Explorar el dataset para elegir el modelo de datos idóneo.
 
-  - Para ello he creado un [jupyter notebook](./dataset/explore.ipynb) y explorado los datos que contiene el dataframe. Al ser un dataframe con tipos de dato objecto y con un formato .svm, considero que la mejor manera de gestionar los datos sería con una BBDD **NoSQL**. 
+  - Para ello he creado un [jupyter notebook](./dataset/explore.ipynb) y explorado los datos que contiene el dataframe. Al ser un dataframe con tipos de dato objecto y con un formato .csv, considero que la mejor manera de gestionar los datos sería con una BBDD **NoSQL**. 
 
-   - Al basarse en el modelo de base de datos de **series temporales** la BBDD que voy a emplear es **InfluxDB**. He de decir, que la selección se debe a su popularidad y se utiliza en la empresa que estoy actualmente. 
+   - Al basarse en el modelo de base de datos de **series temporales** la BBDD que voy a emplear es  **InfluxDB**. He de decir, que la selección se debe a su popularidad y se utiliza en la empresa que estoy actualmente. 
 
 ## 2. InfluxDB
    
@@ -42,7 +42,7 @@ No
 ```
   curl --silent -w "%{response_code}: %{errormsg}\n" \
   -XPOST "https://eu-central-1-1.aws.cloud2.influxdata.com/api/v2/buckets" \
-  --header "Authorization: Token 2xxsXIxgVCwPznjv3VRMTqdm2o5Nm31NK5dLBdcf189KH3RHHmEjNuHH5_6AnBvF44jA8t_59XN966iBbXK6MQ=="\
+  --header "Authorization: Token MI_TOKEN"\
   --header "Content-type: application/json" \
   --data @- << EOF
 {
@@ -65,7 +65,7 @@ EOF
 
   #### 1 Línea de comandos
 
-  Para el envío de datos primero lo he hecho enviando un dato desde la línea de comandos con la siguiente línea:
+  Para el envío de datos, lo he hecho enviando un dato desde la línea de comandos con la siguiente línea:
   ```
   curl --silent -w "%{response_code}: %{errormsg}\n" \
   "https://eu-central-1-1.aws.cloud2.influxdata.com/api/v2/write?bucket=966ce424e102322d&precision=ns" \
@@ -95,8 +95,8 @@ url = "https://eu-central-1-1.aws.cloud2.influxdata.com/api/v2/write?bucket=vien
 # Parámetros para la solicitud
 host_ = "https://eu-central-1-1.aws.cloud2.influxdata.com"
 token_ = MI_TOKEN
-org_ = "f1237642dc0cea57"  # Tu organización
-bucket_ = "viento"  # Tu bucket
+org_ = "f1237642dc0cea57"
+bucket_ = "viento"  
 
 client = InfluxDBClient3(token=token_,
                         host=host_,
@@ -116,7 +116,7 @@ client.write(point)
 ```
   -  Si los datos se han enviado correctamente en la interfaz de InfluxDB > Data Explorer, haciendo la consulta de la imagen nos mostrará en la parte inferior los datos enviados al bucket.
 
-  ![](./img_apuntes/envio_datos_terminal.png)
+  ![](./img_apuntes/envio_datos_terminal.png) 
 
 
 ### 3. Generar Aplicación
@@ -225,17 +225,16 @@ Y para utilizarlo en mi código simplemente he importado la librería os y el si
 ```
 import os 
 
+...
+
 token = os.getenv("INFLUX_TOKEN")
 ```
 
-### Validación de datos
-
-https://docs.influxdata.com/influxdb/cloud-serverless/get-started/write/?t=Python
-
-
-
-
-
+## Mejoras 
+- Procesamiento de datos: comprobar si los datos son correctos y si no están repetidos
+- Añadir fuente de datos
+- Automatización de la ingesta de datos
+- Añadir seguridad TSL/SSL
 
 ## Problemas 
 - OrgID. A la hora de crear el bucket de InfluxDB estaba poniendo el nombre en vez de el id.
@@ -246,8 +245,7 @@ https://docs.influxdata.com/influxdb/cloud-serverless/get-started/write/?t=Pytho
   - El servidor se había quedado bloqueado, tras 4 horas, cerrando sesión y volviendo a iniciar ha funcionado a la primera.
 - Bibliotecas
 
+## Alternativas
 
-## Bibliografía
-
-
-- https://docs.influxdata.com/influxdb/cloud-serverless/api/#operation/createMeasurementSchema
+- Prometheus: es una BBDD de que tiene la capacidad de controlar grandes volumenes de series temporales.
+- Elastic Search, Filebeat y Kibana: En caso de que los datos fueran obtenidos en tiempo real se podría hacer automaticamente con Docker como hice en el Reto 1.

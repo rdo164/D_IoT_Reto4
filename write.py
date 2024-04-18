@@ -12,8 +12,8 @@ host_ = "https://eu-central-1-1.aws.cloud2.influxdata.com"
 token_ = os.getenv("INFLUX_TOKEN")
 
 
-org_ = "f1237642dc0cea57"  # Tu organización
-bucket_ = "viento"  # Tu bucket
+org_ = "f1237642dc0cea57"  # organización
+bucket_ = "viento"  # bucket
 
 client = InfluxDBClient3(token=token_,
                          host=host_,

@@ -24,6 +24,7 @@ client = InfluxDBClient3(token=token_,
 
 for index, row in data.iterrows():
     Date_Time, LV_ActivePower_kW, Wind_Speed_m_s,Theoretical_Power_Curv,Wind_Direction = row
+    
     point = Point("wind_turbine") \
         .tag("location", "site1") \
         .field("LV_ActivePower_kW", LV_ActivePower_kW) \
